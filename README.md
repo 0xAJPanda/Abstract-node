@@ -2,7 +2,7 @@
 
 ![image](logo.png)
 
-## Pre requisite
+## Pre-requisite
 
 1. You need docker installed and docker compose (if you already have it installed move to the Usage section)
 
@@ -35,7 +35,7 @@ sudo docker run hello-world
 ```
 
 
-###Clone the official repo
+## Clone the official repo
 
 ```
 git clone https://github.com/Abstract-Foundation/abstract-node
