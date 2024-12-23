@@ -1,5 +1,7 @@
 # Abstract-node
 
+![image](logo.png)
+
 ## Pre requisite
 
 1. You need docker installed and docker compose (if you already have it installed move to the Usage section)
