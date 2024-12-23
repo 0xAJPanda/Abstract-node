@@ -59,12 +59,9 @@ Check the logs
  docker logs -f testnet-node-external-node-1
 
 ```
-
 Check and save your private keys
 ```
  cat ~/abstract-node/external-node/configs/testnet_consensus_secrets.yaml
-
 ```
-
 
 Please try it if you find any issues please reach out to me on twitter : https://x.com/0xAJPanda
