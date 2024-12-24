@@ -2,66 +2,94 @@
 
 ![image](logo.png)
 
-## Pre-requisite
+## Pre-requisites
 
-1. You need docker installed and docker compose (if you already have it installed move to the Usage section)
+Before getting started, make sure you have Docker and Docker Compose installed on your system. If you don’t have them installed, follow the steps below:
 
-Follow the instruction from the official documentation : https://docs.docker.com/engine/install/ubuntu/
+### Install Docker and Docker Compose
 
-Or use the command below
+Follow the official [Docker installation guide for Ubuntu](https://docs.docker.com/engine/install/ubuntu/) or run the following commands:
 
-```
+```bash
+# Update your system
 sudo apt update -y && sudo apt upgrade -y
+
+# Remove conflicting packages
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
+# Install dependencies
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
+
+# Install Docker
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
+# Add Docker's official repository
 echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+# Update and install Docker and Docker Compose
 sudo apt update -y && sudo apt upgrade -y
-
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# Test Docker
+# Test Docker installation
 sudo docker run hello-world
-
 ```
 
+## Clone the Official Repository
 
-## Clone the official repo
+First, clone the repository to your local machine:
 
-```
+```bash
 git clone https://github.com/Abstract-Foundation/abstract-node
 cd abstract-node/external-node
 ```
 
+### Rename the Testnet File to Docker Compose
 
-Rename the testnet file to a docker compose
-```
- cp testnet-external-node.yml docker-compose.yml
+Rename the testnet file to `docker-compose.yml`:
+
+```bash
+cp testnet-external-node.yml docker-compose.yml
 ```
 
-Start the container
-```
+### Start the Container
+
+Launch the container using Docker Compose:
+
+```bash
 docker compose up -d
 ```
 
-Check the logs 
+### Check the Logs
 
-```
- docker logs -f testnet-node-external-node-1
+To monitor the logs of the container:
 
-```
-Check and save your private keys
-```
- cat ~/abstract-node/external-node/configs/testnet_consensus_secrets.yaml
+```bash
+docker logs -f testnet-node-external-node-1
 ```
 
-Please try it if you find any issues please reach out to me on twitter : https://x.com/0xAJPanda
+### Check and Save Your Private Keys
+
+Access and save your private keys for future use:
+
+```bash
+cat ~/abstract-node/external-node/configs/testnet_consensus_secrets.yaml
+```
+
+## Troubleshooting
+
+### Issue: PostgreSQL Not Starting
+
+Many users have reported issues with PostgreSQL not starting. The easiest solution to resolve this is to bring the container down and start it again:
+
+```bash
+docker compose down && docker compose up -d
+```
+
+If you encounter any other issues, feel free to reach out to me on Twitter: [@0xAJPanda](https://x.com/0xAJPanda).
+
