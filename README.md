@@ -54,7 +54,7 @@ cd abstract-node/external-node
 Rename the testnet file to `docker-compose.yml`:
 
 ```bash
-cp testnet-external-node.yml docker-compose.yml
+cp mainnet-external-node.yml docker-compose.yml
 ```
 
 ### Start the Container
@@ -75,11 +75,7 @@ docker logs -f testnet-node-external-node-1
 
 ### Check and Save Your Private Keys
 
-Access and save your private keys for future use:
-
-```bash
-cat ~/abstract-node/external-node/configs/testnet_consensus_secrets.yaml
-```
+The private key is inside the node itself, i will provide the command to retrive it in the next commit
 
 ## Troubleshooting
 
